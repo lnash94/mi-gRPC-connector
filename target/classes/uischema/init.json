@@ -30,8 +30,13 @@
                                     "type": "attribute",
                                     "value": {
                                         "name": "server",
+<<<<<<< HEAD
                                         "displayName": "Server URL",
                                         "inputType": "stringOrExpression",
+=======
+                                        "displayName": "Server URL 01",
+                                        "inputType": "string",
+>>>>>>> a1b1022 (Rename the xmls)
                                         "defaultValue": "",
                                         "required": "true",
                                         "helpTip": "The service root URL."
@@ -41,12 +46,20 @@
                                     "type": "attribute",
                                     "value": {
                                         "name": "port",
+<<<<<<< HEAD
                                         "displayName": "Port",
                                         "inputType": "string",
                                         "match Pattern": "^\\d+$",
                                         "defaultValue": "",
                                         "required": "true",
                                         "helpTip": "The port for the root URL."
+=======
+                                        "displayName": "Port number",
+                                        "inputType": "integer",
+                                        "defaultValue": "",
+                                        "required": "true",
+                                        "helpTip": "The port."
+>>>>>>> a1b1022 (Rename the xmls)
                                     }
                                 }
                             ]
