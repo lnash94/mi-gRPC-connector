@@ -18,9 +18,14 @@
 -->
 
 <template name="init" onError="fault" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="base" description="The service root URL."/>
+    <parameter name="server" description="The server URL" />
+    <parameter name="port" description="URL port"/>
+
     <parameter name="blocking" description="Whether to use blocking transport"/>
     <sequence>
-        <property name="uri.var.base" expression="$func:base"/>
+    <class name="org.wso2.carbon.payloadvconnector.GRPCURLBuilder">
+        <property name="server" expression="$func:server" />
+        <property name="port" expression="$func:port"/>
+    </class>    
     </sequence>
 </template>

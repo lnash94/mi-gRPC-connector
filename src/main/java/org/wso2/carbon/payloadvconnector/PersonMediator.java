@@ -1,15 +1,15 @@
 package org.wso2.carbon.payloadvconnector;
 
+import helloworld.Person;
+import io.grpc.Channel;
 import org.apache.synapse.MessageContext;
 
 // Import your generated classes:
-import org.wso2.carbon.payloadvconnector.Person.HelloRequest;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.payloadvconnector.Person.HelloReply;
 
 public class PersonMediator extends AbstractConnector {
     private String name;
@@ -42,37 +42,19 @@ public class PersonMediator extends AbstractConnector {
             }
 
             // 2. Create a protobuf HelloRequest:
-             HelloRequest request = HelloRequest.newBuilder()
+             Person.HelloRequest request = Person.HelloRequest.newBuilder()
                                                 .setName(name)
                                                 .build();
 
-            // // 3. (Optional) If you have a gRPC client stub for your "Greeter" service:
-            // //    Call the remote gRPC server to get a HelloReply.
-            // //    Suppose you have a blocking stub:
-            // //
-            ManagedChannel channel = ManagedChannelBuilder
-                .forAddress("localhost", 50051)
-                .usePlaintext() // For local testing or non-secure connections
-                .build();
+             helloworld.GreeterGrpc.GreeterBlockingStub stub = helloworld.GreeterGrpc.newBlockingStub((ManagedChannel) context
+                     .getProperty("grpc_channel"));
+             Person.HelloReply response = stub.sayHello(request);
 
-             GreeterGrpc.GreeterBlockingStub stub = GreeterGrpc.newBlockingStub(channel);
-             HelloReply response = stub.sayHello(request);
 
-            // // For demonstration, let’s just create a HelloReply ourselves:
-            // HelloReply response = HelloReply.newBuilder()
-            //                                 .setMessage("Hello, " + name + " from Synapse!")
-            //                                 .build();
+            //TODO: Alternatively, you might transform it to JSON or XML for further Synapse flow:
+             String jsonPayload = "{\"message\": \"" + response.getMessage() + "\"}";
 
-            // // 4. You can now serialize the HelloReply to a byte array, if needed:
-            // String replyBytes = response.toString();
-
-            // 5. Put the response back into the Synapse message context.
-            //    For instance, set it as the message payload or as a property:
-            context.setProperty("receivedName", response.getMessage());
-
-            // Alternatively, you might transform it to JSON or XML for further Synapse flow:
-            // String jsonPayload = "{\"message\": \"" + response.getMessage() + "\"}";
-            // context.getEnvelope().getBody().getFirstElement().setText(jsonPayload);
+             context.getEnvelope().getBody().getFirstElement().setText(jsonPayload);
 
             // return true; // mediation succeeded
             log.info("i'm out... byeee...");

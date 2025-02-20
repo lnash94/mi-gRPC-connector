@@ -29,12 +29,23 @@
                                 {
                                     "type": "attribute",
                                     "value": {
-                                        "name": "base",
-                                        "displayName": "Base URL",
-                                        "inputType": "stringOrExpression",
+                                        "name": "server",
+                                        "displayName": "Server URL 01",
+                                        "inputType": "string",
                                         "defaultValue": "",
                                         "required": "true",
                                         "helpTip": "The service root URL."
+                                    }
+                                },
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "port",
+                                        "displayName": "Port number",
+                                        "inputType": "integer",
+                                        "defaultValue": "",
+                                        "required": "true",
+                                        "helpTip": "The port."
                                     }
                                 }
                             ]

@@ -20,8 +20,8 @@
 
 <component name="functions" type="synapse/template">
     <subComponents>
-        <component name="helloRequest">
-            <file>helloRequest.xml</file>
+        <component name="sayHello">
+            <file>sayHello.xml</file>
             <description>This is grpc hello operation.</description>
         </component>
     </subComponents>
