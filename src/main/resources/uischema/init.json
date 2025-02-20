@@ -30,8 +30,8 @@
                                     "type": "attribute",
                                     "value": {
                                         "name": "server",
-                                        "displayName": "Server URL 01",
-                                        "inputType": "string",
+                                        "displayName": "Server URL",
+                                        "inputType": "stringOrExpression",
                                         "defaultValue": "",
                                         "required": "true",
                                         "helpTip": "The service root URL."
@@ -41,11 +41,12 @@
                                     "type": "attribute",
                                     "value": {
                                         "name": "port",
-                                        "displayName": "Port number",
-                                        "inputType": "integer",
+                                        "displayName": "Port",
+                                        "inputType": "string",
+                                        "match Pattern": "^\\d+$",
                                         "defaultValue": "",
                                         "required": "true",
-                                        "helpTip": "The port."
+                                        "helpTip": "The port for the root URL."
                                     }
                                 }
                             ]

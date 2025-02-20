@@ -26,7 +26,7 @@ import org.wso2.carbon.connector.core.AbstractConnector;
 public class GRPCURLBuilder extends AbstractConnector {
 
     private static String server;
-    private static int port;
+    private static String port;
     private static final String GRPC_CHANNEL = "grpc_channel";
 
     public static String getServer() {
@@ -37,18 +37,19 @@ public class GRPCURLBuilder extends AbstractConnector {
        GRPCURLBuilder.server = server;
     }
 
-    public static int getPort() {
+    public static String getPort() {
         return port;
     }
 
-    public static void setPort(int port) {
+    public static void setPort(String port) {
         GRPCURLBuilder.port = port;
     }
 
     @Override
     public void connect(MessageContext messageContext) {
+        int portInt = Integer.parseInt(getPort());
         ManagedChannel channel = ManagedChannelBuilder
-                .forAddress(getServer(), getPort())
+                .forAddress(getServer(), portInt)
                 .usePlaintext() // For local testing or non-secure connections
                 .build();
         messageContext.setProperty(GRPC_CHANNEL, channel);
