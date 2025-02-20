@@ -1,0 +1,47 @@
+{
+    "connectorName": "payloadv",
+    "connectionName": "payloadv",
+    "title": "payloadv connection",
+    "help": "payloadv connection",
+    "elements": [
+        {
+            "type": "attribute",
+            "value": {
+                "name": "connectionName",
+                "displayName": "Connection Name",
+                "inputType": "string",
+                "defaultValue": "payloadv_CONNECTION",
+                "required": "true",
+                "helpTip": "The name for the payloadv connection.",
+                "validation": "nameWithoutSpecialCharactors"
+            }
+        },
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Basic",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "base",
+                                        "displayName": "Base URL",
+                                        "inputType": "stringOrExpression",
+                                        "defaultValue": "",
+                                        "required": "true",
+                                        "helpTip": "The service root URL."
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
